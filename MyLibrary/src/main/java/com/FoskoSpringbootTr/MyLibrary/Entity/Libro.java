@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="Libri")
-public class Libro {
+public class Libro extends Prodotto {
     /*
     La classe Libro al momento emula un libro avente come attributi titolo autore e codice univoco isbn
     Il prossimo step sarà quello di rendere autore una entity a parte per creare una relazione una a molti 1 autore + opere
@@ -16,21 +16,23 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String titolo;
-    @Column
+    @Column(name = "Titolo")
+    private String nomeProdotto;
+    @Column(name = "Autore")
     private String autore;
-    @Column
+    @Column(name = "ISBN")
     private Long isbn;
+    @Column(name = "Prezzo")
+    private Double prezzo;
 
-    public Libro(Long id, String titolo, String autore, Long isbn) {
-        this.id = id;
-        this.titolo = titolo;
-        this.autore = autore;
-        this.isbn = isbn;
+
+    public Libro(Long id, String nomeProdotto,String autore,Long isbn, Double prezzo) {
+        super(nomeProdotto, prezzo);
+        this.id=id;
+        this.autore=autore;
+        this.isbn=isbn;
     }
     public Libro(){
-
     }
 
     public Long getId() {
@@ -41,12 +43,13 @@ public class Libro {
         this.id = id;
     }
 
-    public String getTitolo() {
-        return titolo;
+    @Override
+    public String getNomeProdotto() {
+        return nomeProdotto;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
+    public void setNomeProdotto(String nomeProdotto) {
+        this.nomeProdotto = nomeProdotto;
     }
 
     public String getAutore() {
@@ -64,4 +67,15 @@ public class Libro {
     public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
+
+    @Override
+    public Double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
+    }
 }
+
+
