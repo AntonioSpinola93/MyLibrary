@@ -2,6 +2,9 @@ package com.FoskoSpringbootTr.MyLibrary.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Local_User")
 public class LocalUser {
@@ -19,14 +22,30 @@ public class LocalUser {
     private String username;
     @Column(name = "password",nullable = false,unique = true,length=1000)
     private String password;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private List<Indirizzo>indirizzi=new ArrayList<>();
 
-    public LocalUser(Long id, String nome, String cognome, String email, String username, String password) {
+
+
+    public LocalUser(Long id, String nome, String cognome, String email, String username, String password,List<Indirizzo> indirizzi) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.indirizzi=indirizzi;
+    }
+    public LocalUser(){
+
+    }
+
+    public List<Indirizzo> getIndirizzi() {
+        return indirizzi;
+    }
+
+    public void setIndirizzi(List<Indirizzo> indirizzi) {
+        this.indirizzi = indirizzi;
     }
 
     public Long getId() {
