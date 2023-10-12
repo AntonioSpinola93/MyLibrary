@@ -24,6 +24,8 @@ public class Libro extends Prodotto {
     private Long isbn;
     @Column(name = "Prezzo")
     private Double prezzo;
+    @OneToOne(mappedBy = "libro",cascade = CascadeType.REMOVE,optional = false,orphanRemoval = true)
+    private Magazzino magazzino;
 
 
     public Libro(Long id, String nomeProdotto,String autore,Long isbn, Double prezzo) {
