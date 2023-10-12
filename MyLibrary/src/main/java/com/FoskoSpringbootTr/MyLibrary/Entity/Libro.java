@@ -15,14 +15,15 @@ public class Libro extends Prodotto {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",nullable = false)
     private Long id;
-    @Column(name = "Titolo")
+    @Column(name = "Titolo",nullable = false)
     private String nomeProdotto;
-    @Column(name = "Autore")
+    @Column(name = "Autore",nullable = false)
     private String autore;
-    @Column(name = "ISBN")
+    @Column(name = "ISBN",nullable = false)
     private Long isbn;
-    @Column(name = "Prezzo")
+    @Column(name = "Prezzo",nullable = false)
     private Double prezzo;
     @OneToOne(mappedBy = "libro",cascade = CascadeType.REMOVE,optional = false,orphanRemoval = true)
     private Magazzino magazzino;

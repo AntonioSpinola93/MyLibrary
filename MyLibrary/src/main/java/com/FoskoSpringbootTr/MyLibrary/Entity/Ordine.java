@@ -2,6 +2,9 @@ package com.FoskoSpringbootTr.MyLibrary.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Ordine")
 public class Ordine {
@@ -15,6 +18,16 @@ public class Ordine {
     @ManyToOne(optional = false)
     @JoinColumn(name = "indirizzo_id",nullable = false)
     private Indirizzo indirizzo;
+    @OneToMany(mappedBy = "ordine",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private List<OrdineQantita> quantita=new ArrayList<>();
+
+    public List<OrdineQantita> getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(List<OrdineQantita> quantita) {
+        this.quantita = quantita;
+    }
 
     public Long getId() {
         return id;

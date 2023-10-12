@@ -12,6 +12,16 @@ public class Magazzino {
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "libro_id",nullable = false,unique = true)
     private Libro libro;
+    @Column(name = "quantita")
+    private Integer quantitaInStock;
+
+    public Integer getQuantitaInStock() {
+        return quantitaInStock;
+    }
+
+    public void setQuantitaInStock(Integer quantitaInStock) {
+        this.quantitaInStock = quantitaInStock;
+    }
 
     public Long getId() {
         return id;
