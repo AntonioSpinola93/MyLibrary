@@ -27,6 +27,7 @@ public class LocalUser {
 
 
 
+
     public LocalUser(Long id, String nome, String cognome, String email, String username, String password,List<Indirizzo> indirizzi) {
         this.id = id;
         this.nome = nome;
